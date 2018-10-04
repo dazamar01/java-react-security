@@ -1,5 +1,12 @@
 package com.api.controller;
 
+/*
+	References:
+		Youtube (code java foundation):
+			https://www.youtube.com/watch?v=-HYrUs1ZCLI
+		JWT
+			https://jwt.io/
+*/
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
