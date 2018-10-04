@@ -11,3 +11,6 @@ Implementation of a Java-backend with rest services consumed by React
 
 2. Install create react app (you need to put sudo at the begining if you have linux or mac)
     npm install -g create-react-app
+
+3. The app was created with the command below
+    create-react-app react-security
