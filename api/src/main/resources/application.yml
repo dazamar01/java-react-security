@@ -1,0 +1,47 @@
+management:
+  security:
+    enabled: true
+#Apartado para Spring Core
+spring:
+  aop:
+    auto: true
+    proxy-target-class: false
+  messages:
+    always-use-message-format: false
+    basename: messages
+    cache-seconds: -1
+  mvc:
+    dispatch-trace-request: false
+    dispatch-options-request: true
+  couchbase:
+    bucket:
+      name: default
+  resources:
+    chain:
+      enabled: true  
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test_seguridad?allowPublicKeyRetrieval=true&useSSL=false
+    username: test
+    password: test
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+#Apartado de Spring Security
+security:
+  oauth2:
+    resource:
+      prefer-token-info: true
+      service-id: resource
+#server
+server:
+  error:
+    whitelabel:
+      enabled: false
+logging:
+  file: /Users/daniel/desarrollo/logs/log.txt
