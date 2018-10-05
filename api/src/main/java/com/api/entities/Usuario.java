@@ -21,7 +21,7 @@ public class Usuario implements Serializable {
 	@Column(unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name = "nombre_usuario", nullable = false)
+	@Column(name = "username", nullable = false)
 	private String nombreUsuario;
 	
 	@Column(name = "password", nullable = false)
@@ -29,6 +29,9 @@ public class Usuario implements Serializable {
 	
 	@Column(name = "correo_electronico", nullable = false)
 	private String correoElectronico;
+	
+	@Column(name = "session_id", nullable = false)
+	private String sessionId;
 	
 	@Column(name = "usuario_creacion_id", nullable = false)
 	private Integer usuarioCreacionId;
@@ -104,6 +107,14 @@ public class Usuario implements Serializable {
 
 	public void setFechaModificacion(LocalDateTime fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 	
 }
