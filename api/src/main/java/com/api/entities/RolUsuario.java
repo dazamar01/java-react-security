@@ -29,7 +29,7 @@ public class RolUsuario implements Serializable {
 	private Usuario usuario;
 	
 	@ManyToOne
-	@JoinColumn(name = "rol_id")
+	@JoinColumn(name = "rol")
 	private Rol rol;
 	
 	@Column(name = "usuario_creacion_id", nullable = false)

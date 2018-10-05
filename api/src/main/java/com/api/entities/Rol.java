@@ -16,12 +16,13 @@ public class Rol implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(unique = true, nullable = false)
-	private Integer id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(unique = true, nullable = false)
+//	private Integer id;
 	
-	@Column(name = "rol", nullable = false)
+	@Id
+	@Column(unique = true, name = "rol", nullable = false)
 	private String rol;
 	
 	@Column(name = "descripcion", nullable = false)
@@ -38,14 +39,6 @@ public class Rol implements Serializable {
 
 	@Column(name = "fecha_modificacion", nullable = false)
 	private LocalDateTime fechaModificacion;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getRol() {
 		return rol;
