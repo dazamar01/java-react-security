@@ -22,7 +22,7 @@ public class Usuario implements Serializable {
 	private Integer id;
 	
 	@Column(name = "username", nullable = false)
-	private String nombreUsuario;
+	private String username;
 	
 	@Column(name = "password", nullable = false)
 	private String password;
@@ -51,14 +51,6 @@ public class Usuario implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getNombreUsuario() {
-		return nombreUsuario;
-	}
-
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
 	}
 
 	public String getPassword() {
@@ -115,6 +107,14 @@ public class Usuario implements Serializable {
 
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }
