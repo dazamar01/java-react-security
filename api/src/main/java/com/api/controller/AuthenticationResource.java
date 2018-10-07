@@ -41,12 +41,12 @@ public class AuthenticationResource {
 				
 			}
 			
-			return new ResponseEntity(-1, HttpStatus.UNAUTHORIZED);
+			// return new ResponseEntity(-1, HttpStatus.UNAUTHORIZED);
 			
 		}catch(Exception ex) {
 			return new ResponseEntity(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+		return new ResponseEntity(1, HttpStatus.OK);
 		
 	}
 	
