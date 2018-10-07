@@ -15,16 +15,16 @@ import com.backend.repositories.UsuarioRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	private UsuarioRepository applicationUserRepository;
+	private UsuarioRepository usuarioRepository;
 
     public UserDetailsServiceImpl(UsuarioRepository applicationUserRepository) {
-        this.applicationUserRepository = applicationUserRepository;
+        this.usuarioRepository = applicationUserRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-    	Usuario applicationUser = applicationUserRepository.findByUsername(username);
+    	Usuario applicationUser = usuarioRepository.findByUsername(username);
         
         if (applicationUser == null) {
             throw new UsernameNotFoundException(username);
