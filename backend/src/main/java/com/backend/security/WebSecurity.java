@@ -19,11 +19,8 @@ import org.springframework.context.annotation.Bean;
 import static com.backend.security.SecurityConstants.SIGN_UP_URL;
 
 /*
- * Implementing JWT
+ * Based on <Implementing JWT> from
  * 	https://auth0.com/blog/implementing-jwt-authentication-on-spring-boot/
- * 
- * Implementing role-based authentication:
- * 	http://www.svlada.com/jwt-token-authentication-with-spring-boot/
  * 
  * */
 
@@ -35,11 +32,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-//	public WebSecurity(UserDetailsServiceImpl userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        this.userDetailsService = userDetailsService;
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-//    }
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
