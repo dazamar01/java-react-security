@@ -47,11 +47,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             Usuario creds = new ObjectMapper()
                     .readValue(req.getInputStream(), Usuario.class);
 
-            
-//            Rol rol = new Rol();
-//            rol.setRol("ADMIN");
-//            List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList(rol.getRol());
-            
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             creds.getUsername(),

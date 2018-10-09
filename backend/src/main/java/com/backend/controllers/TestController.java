@@ -15,5 +15,15 @@ public class TestController {
     public List<Task> getTasks() {
         return null;
     }
+
+	@GetMapping("/onlyadmin")
+    public String onlyAdmin() {
+        return "ONLY ADMIN ALLOWED";
+    }
+	
+	@GetMapping("/onlyuser")
+    public String onlyUser() {
+        return "ONLY USER ALLOWED";
+    }
 	
 }

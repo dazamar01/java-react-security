@@ -56,7 +56,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 		if (token != null) {
 
 			String jwt = token.replace(TOKEN_PREFIX, "");
-			String role = "";
 
 			// parse the token.
 			String user = JWT.require(Algorithm.HMAC512(SECRET.getBytes())).build().verify(jwt).getSubject();
