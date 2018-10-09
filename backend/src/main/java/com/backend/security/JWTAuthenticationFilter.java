@@ -47,17 +47,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             Usuario creds = new ObjectMapper()
                     .readValue(req.getInputStream(), Usuario.class);
 
-            
-            Rol rol = new Rol();
-            rol.setRol("ADMIN");
-            
-            List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList(rol.getRol());
-            
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             creds.getUsername(),
                             creds.getPassword(),
-                            grantedAuthorities)
+                            new ArrayList<>())
             );
             
         } catch (IOException e) {
@@ -73,17 +67,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
 
-		Claims claims = Jwts.claims()
-                .setSubject(((User) auth.getPrincipal()).getUsername());
-        claims.put("role", "ADMIN");
-        
-        String s = ((User) auth.getPrincipal()).getUsername();
+		String rol = "";
+		for ( GrantedAuthority r:  auth.getAuthorities()) {
+			rol = r.getAuthority();
+		}
 		
-        System.out.println("USER: " + s  );
-        
         String token = JWT.create()
                 .withSubject(((User) auth.getPrincipal()).getUsername())
-                .withClaim("role", "ADMIN")
+                .withClaim("scopes", rol )
                 .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                 .sign(HMAC512(SecurityConstants.SECRET.getBytes()));
         res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);

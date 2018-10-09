@@ -1,50 +1,43 @@
-package com.backend.entities;
+package com.backend.model;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.backend.entities.Rol;
+import com.backend.entities.RolUsuario;
+import com.backend.entities.Usuario;
 
-@Entity
-@Table(name = "usuarios")
-public class Usuario implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(unique = true, nullable = false)
+public class UsuarioVO {
+	
 	private Integer id;
 	
-	@Column(name = "username", nullable = false)
 	private String username;
 	
-	@Column(name = "password", nullable = false)
 	private String password;
 	
-	@Column(name = "correo_electronico", nullable = false)
 	private String correoElectronico;
 	
-	@Column(name = "session_id", nullable = false)
 	private String sessionId;
 	
-	@Column(name = "usuario_creacion_id", nullable = false)
 	private Integer usuarioCreacionId;
 
-	@Column(name = "fecha_creacion", nullable = false)
 	private LocalDateTime fechaCreacion;
 
-	@Column(name = "usuario_modificacion_id", nullable = false)
 	private Integer usuarioModificacionId;
 
-	@Column(name = "fecha_modificacion", nullable = false)
 	private LocalDateTime fechaModificacion;
+
+	private List<RolUsuario> rolesUsuario;
+
+	private List<Rol> roles;
+	
+	public UsuarioVO(Usuario usuario) {
+		// TODO Auto-generated constructor stub
+		this.id = usuario.getId();
+		this.username = usuario.getUsername();
+		this.correoElectronico = usuario.getCorreoElectronico();
+	}
 
 	public Integer getId() {
 		return id;
@@ -52,6 +45,14 @@ public class Usuario implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -68,6 +69,14 @@ public class Usuario implements Serializable {
 
 	public void setCorreoElectronico(String correoElectronico) {
 		this.correoElectronico = correoElectronico;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
 	public Integer getUsuarioCreacionId() {
@@ -102,20 +111,22 @@ public class Usuario implements Serializable {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-	public String getSessionId() {
-		return sessionId;
+	public List<RolUsuario> getRolesUsuario() {
+		return rolesUsuario;
 	}
 
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
+	public void setRolesUsuario(List<RolUsuario> roles) {
+		this.rolesUsuario = roles;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
+	public List<Rol> getRoles() {
+		this.roles = new ArrayList<Rol>();
+		if (this.rolesUsuario !=null) {
+			for (RolUsuario ru: rolesUsuario) {
+				roles.add( ru.getRol() );
+			}
+		}
+		return roles;
 	}
 
 	
