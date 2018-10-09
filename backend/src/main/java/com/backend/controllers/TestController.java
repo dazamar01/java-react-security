@@ -20,12 +20,13 @@ public class TestController {
     }
 
 	//@PreAuthorize("hasRole('ADMIN')")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMINISTRADOR')")
 	@GetMapping("/onlyadmin")
     public String onlyAdmin() {
         return "ONLY ADMIN ALLOWED";
     }
-	
+
+	@PreAuthorize("hasRole('USUARIO')")
 	@GetMapping("/onlyuser")
     public String onlyUser() {
         return "ONLY USER ALLOWED";
