@@ -73,13 +73,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
 
-		Claims claims = Jwts.claims()
-                .setSubject(((User) auth.getPrincipal()).getUsername());
-        claims.put("role", "ADMIN");
-        
-        String s = ((User) auth.getPrincipal()).getUsername();
-		
-        System.out.println("USER: " + s  );
+//		Claims claims = Jwts.claims()
+//                .setSubject(((User) auth.getPrincipal()).getUsername());
+//        claims.put("role", "ADMIN");
+//        
+//        String s = ((User) auth.getPrincipal()).getUsername();
+//		
+//        System.out.println("USER: " + s  );
         
         String token = JWT.create()
                 .withSubject(((User) auth.getPrincipal()).getUsername())

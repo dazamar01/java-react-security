@@ -9,6 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.backend.entities.Usuario;
 import com.backend.repositories.UsuarioRepository;
 
+/*
+ * Usuarios (misma password)
+ * 	sistema
+ * 	admin
+ * 	usuario
+ * 
+ * */
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
