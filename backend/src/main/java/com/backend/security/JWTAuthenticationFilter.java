@@ -48,16 +48,15 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                     .readValue(req.getInputStream(), Usuario.class);
 
             
-            Rol rol = new Rol();
-            rol.setRol("ADMIN");
-            
-            List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList(rol.getRol());
+//            Rol rol = new Rol();
+//            rol.setRol("ADMIN");
+//            List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList(rol.getRol());
             
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             creds.getUsername(),
                             creds.getPassword(),
-                            grantedAuthorities)
+                            new ArrayList<>())
             );
             
         } catch (IOException e) {
@@ -73,14 +72,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
 
-//		Claims claims = Jwts.claims()
-//                .setSubject(((User) auth.getPrincipal()).getUsername());
-//        claims.put("role", "ADMIN");
-//        
-//        String s = ((User) auth.getPrincipal()).getUsername();
-//		
-//        System.out.println("USER: " + s  );
-        
 		String rol = "";
 		for ( GrantedAuthority r:  auth.getAuthorities()) {
 			rol = r.getAuthority();
