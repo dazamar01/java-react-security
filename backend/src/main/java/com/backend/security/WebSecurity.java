@@ -2,6 +2,7 @@ package com.backend.security;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,19 +16,20 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 // import com.backend.services.UserDetailsService;
+import org.springframework.context.annotation.Configuration;
 
 import static com.backend.security.SecurityConstants.SIGN_UP_URL;
 
 /*
- * Implementing JWT
+ * Based on <Implementing JWT> from
  * 	https://auth0.com/blog/implementing-jwt-authentication-on-spring-boot/
- * 
- * Implementing role-based authentication:
- * 	http://www.svlada.com/jwt-token-authentication-with-spring-boot/
- * 
+ * 	
+ * and <Role-BasedSecurity> from
+ * 	https://www.devglan.com/spring-security/jwt-role-based-authorization
  * */
-
+@Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -35,11 +37,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-//	public WebSecurity(UserDetailsServiceImpl userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        this.userDetailsService = userDetailsService;
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-//    }
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {

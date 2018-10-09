@@ -60,9 +60,11 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 			Claim rol = JWT.require(Algorithm.HMAC512(SECRET.getBytes())).build().verify(jwt).getClaim("scopes");
 
 			if (user != null) {
+				
+				System.out.println("ROL: " + rol.asString());
 
 				List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-						.commaSeparatedStringToAuthorityList(ROLE_PREFIX + rol.asString());
+						.commaSeparatedStringToAuthorityList(rol.asString());
 
 				return new UsernamePasswordAuthenticationToken(user, null, grantedAuthorities);
 
