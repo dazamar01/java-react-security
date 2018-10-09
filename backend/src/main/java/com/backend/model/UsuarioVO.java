@@ -1,8 +1,10 @@
 package com.backend.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.backend.entities.Rol;
 import com.backend.entities.RolUsuario;
 import com.backend.entities.Usuario;
 
@@ -26,7 +28,9 @@ public class UsuarioVO {
 
 	private LocalDateTime fechaModificacion;
 
-	private List<RolUsuario> roles;
+	private List<RolUsuario> rolesUsuario;
+
+	private List<Rol> roles;
 	
 	public UsuarioVO(Usuario usuario) {
 		// TODO Auto-generated constructor stub
@@ -107,12 +111,23 @@ public class UsuarioVO {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-	public List<RolUsuario> getRoles() {
+	public List<RolUsuario> getRolesUsuario() {
+		return rolesUsuario;
+	}
+
+	public void setRolesUsuario(List<RolUsuario> roles) {
+		this.rolesUsuario = roles;
+	}
+
+	public List<Rol> getRoles() {
+		this.roles = new ArrayList<Rol>();
+		if (this.rolesUsuario !=null) {
+			for (RolUsuario ru: rolesUsuario) {
+				roles.add( ru.getRol() );
+			}
+		}
 		return roles;
 	}
 
-	public void setRoles(List<RolUsuario> roles) {
-		this.roles = roles;
-	}
 	
 }

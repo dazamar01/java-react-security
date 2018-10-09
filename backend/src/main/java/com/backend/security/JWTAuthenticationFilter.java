@@ -81,9 +81,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 //		
 //        System.out.println("USER: " + s  );
         
+		String rol = "";
+		for ( GrantedAuthority r:  auth.getAuthorities()) {
+			rol = r.getAuthority();
+		}
+		
         String token = JWT.create()
                 .withSubject(((User) auth.getPrincipal()).getUsername())
-                .withClaim("role", "ADMIN")
+                .withClaim("scopes", rol )
                 .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                 .sign(HMAC512(SecurityConstants.SECRET.getBytes()));
         res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
