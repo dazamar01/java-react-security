@@ -2,6 +2,7 @@ package com.backend.security;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,6 +16,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 // import com.backend.services.UserDetailsService;
+import org.springframework.context.annotation.Configuration;
 
 import static com.backend.security.SecurityConstants.SIGN_UP_URL;
 
@@ -23,8 +25,9 @@ import static com.backend.security.SecurityConstants.SIGN_UP_URL;
  * 	https://auth0.com/blog/implementing-jwt-authentication-on-spring-boot/
  * 
  * */
-
+@Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired

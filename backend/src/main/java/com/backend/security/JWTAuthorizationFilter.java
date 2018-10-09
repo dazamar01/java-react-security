@@ -61,10 +61,10 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 			if (user != null) {
 				
-				System.out.println("ROL: " + ROLE_PREFIX + rol.asString());
+				System.out.println("ROL: " + rol.asString());
 
 				List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-						.commaSeparatedStringToAuthorityList(ROLE_PREFIX + rol.asString());
+						.commaSeparatedStringToAuthorityList(rol.asString());
 
 				return new UsernamePasswordAuthenticationToken(user, null, grantedAuthorities);
 
