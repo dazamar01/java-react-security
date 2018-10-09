@@ -1,12 +1,11 @@
 package com.backend.security;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
+import static com.backend.security.SecurityConstants.ROLE_PREFIX;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,17 +17,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.auth0.jwt.JWT;
-import com.backend.entities.Rol;
 import com.backend.entities.Usuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
@@ -69,7 +63,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 		String rol = "";
 		for ( GrantedAuthority r:  auth.getAuthorities()) {
-			rol = r.getAuthority();
+			rol = ROLE_PREFIX + r.getAuthority();
 		}
 		
         String token = JWT.create()
