@@ -23,7 +23,9 @@ import static com.backend.security.SecurityConstants.SIGN_UP_URL;
 /*
  * Based on <Implementing JWT> from
  * 	https://auth0.com/blog/implementing-jwt-authentication-on-spring-boot/
- * 
+ * 	
+ * and <Role-BasedSecurity> from
+ * 	https://www.devglan.com/spring-security/jwt-role-based-authorization
  * */
 @Configuration
 @EnableWebSecurity

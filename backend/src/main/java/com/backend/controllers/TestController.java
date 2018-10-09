@@ -19,7 +19,6 @@ public class TestController {
         return null;
     }
 
-	//@PreAuthorize("hasRole('ADMIN')")
 	@PreAuthorize("hasRole('ADMINISTRADOR')")
 	@GetMapping("/onlyadmin")
     public String onlyAdmin() {
