@@ -7,7 +7,7 @@ Implementation of a Java-backend with rest services consumed by React
 # HTTP 403 Forbidden status is expected
 curl http://localhost:8080/tasks
 
-# registers a new user
+## registers a new user
 curl -H "Content-Type: application/json" -X POST -d '{
     "username": "admin",
     "password": "password"
