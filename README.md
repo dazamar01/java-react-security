@@ -35,3 +35,8 @@ Date: Sun, 07 Oct 2018 17:37:09 GMT
 ## issue a GET request, passing the JWT, to hit the method with auth
 
 curl -X GET -H "Content-Type: application/json"  -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInNjb3BlcyI6IlJPTEVfQURNSU5JU1RSQURPUiIsImV4cCI6MTUzOTkxNzk4NH0.cwP345K2CGVSGTYtEEOqsEIhNA7HG4IWibBUQx0mkiKmAd5QuzKRecmUD3GLK15V969DgIAfP5zjt6071s9JDg" http://localhost:8080/tasks/onlyadmin
+
+
+Expected response:
+
+ONLY ADMIN ALLOWED
