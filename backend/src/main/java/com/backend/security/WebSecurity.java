@@ -20,6 +20,8 @@ import org.springframework.context.annotation.Configuration;
 
 import static com.backend.security.SecurityConstants.SIGN_UP_URL;
 
+import java.util.Arrays;
+
 /*
  * Based on <Implementing JWT> from
  * 	https://auth0.com/blog/implementing-jwt-authentication-on-spring-boot/
@@ -36,30 +38,35 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	private UserDetailsServiceImpl userDetailsService;
 
 	@Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-	@Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
-                // this disables session creation on Spring Security
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    }
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
-    }
-	
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-      final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-      source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-      return source;
-    }
-    
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+				.anyRequest().authenticated().and().addFilter(new JWTAuthenticationFilter(authenticationManager()))
+				.addFilter(new JWTAuthorizationFilter(authenticationManager()))
+				// this disables session creation on Spring Security
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	}
+
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+	}
+
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+//      final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//      source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowCredentials(true);
+		configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+		configuration.setAllowedHeaders(Arrays.asList("X-Requested-With","Origin","Content-Type","Accept","Authorization"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
+
 }
