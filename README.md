@@ -1,5 +1,5 @@
 # java-react-security
-Implementation of a Java-backend with rest services
+Implementation of a Java-backend with rest services in roder to serve a React App
 
 #1. Hit the services
 
