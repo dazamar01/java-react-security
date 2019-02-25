@@ -39,4 +39,4 @@ curl -X GET -H "Content-Type: application/json"  -H "Authorization: Bearer eyJ0e
 
 Expected response:
 
-ONLY ADMIN ALLOWED
+TEST OK: {ONLY ADMIN ROLE}
