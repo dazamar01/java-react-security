@@ -20,9 +20,9 @@ spring:
     chain:
       enabled: true  
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/test_seguridad?allowPublicKeyRetrieval=true&useSSL=false
-    username: test
-    password: test
+    url: jdbc:mysql://localhost:3306/test_seguridad?allowPublicKeyRetrieval=true&useSSL=false
+    username: rancho
+    password: d3v3l0p
   jpa:
     show-sql: true
     hibernate:

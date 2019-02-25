@@ -54,6 +54,7 @@
 			<artifactId>spring-session-core</artifactId>
 		</dependency>
 
+		<!-- Allows reload on save -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

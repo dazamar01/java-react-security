@@ -22,7 +22,7 @@ public class TestController {
 	@PreAuthorize("hasRole('ADMINISTRADOR')")
 	@GetMapping("/onlyadmin")
     public String onlyAdmin() {
-        return "ONLY ADMIN ALLOWED";
+        return "TEST OK: {ONLY ADMIN ROLE}";
     }
 
 	@PreAuthorize("hasRole('USUARIO')")
