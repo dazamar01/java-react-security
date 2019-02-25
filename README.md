@@ -48,3 +48,13 @@ curl -X GET -H "Content-Type: application/json"  -H "Authorization: Bearer eyJ0e
 Expected response:
 
 TEST OK: {ONLY ADMIN ROLE}
+
+
+## Extra information:
+
+### CORS
+I've added the CORS configuration, this is located on "security" package.
+
+### log4J
+I've also added the Log4j configuration, you can take a look on "src/main/resources" folder, on "log4j2.xml" file.
+The first thing you need to do it´s check the "log-path" property, because this will be the directory where the logs will be posted
