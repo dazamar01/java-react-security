@@ -1,6 +1,14 @@
 # java-react-security
 Implementation of a Java-backend with rest services in roder to serve a React App
 
+# 0 . Creating the db
+First of all, you must create the DB... but don´t worry, you just need to go to "bd" folder, and execute the files
+
+    00 - crear usuario.sql -> will create the user for mysql
+    01 - crear_bd.sql       -> will create the db
+    02 - crear_schema.sql   -> will create the tables needed
+    03 - data-roles.sql     -> insert the data
+
 #1. Hit the services
 
 ## issues a GET request to retrieve tasks with no JWT
