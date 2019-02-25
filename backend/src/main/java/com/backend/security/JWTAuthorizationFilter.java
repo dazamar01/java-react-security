@@ -61,7 +61,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 			if (user != null) {
 				
-				System.out.println("ROL: " + rol.asString());
+				// System.out.println("ROL: " + rol.asString());
 
 				List<GrantedAuthority> grantedAuthorities = AuthorityUtils
 						.commaSeparatedStringToAuthorityList(rol.asString());

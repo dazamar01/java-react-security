@@ -45,3 +45,4 @@ server:
       enabled: false
 logging:
   file: /Users/daniel/desarrollo/logs/log.txt
+#Log4jContextSelector
